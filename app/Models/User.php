@@ -52,4 +52,12 @@ class User extends Authenticatable
             return asset('users/images/no-image.png');
         }
     }
+
+    public function files() {
+        return $this->hasMany(File::class);
+    }
+
+    public function folders() {
+        return $this->hasMany(Folder::class);
+    }
 }

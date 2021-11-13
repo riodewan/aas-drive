@@ -46,15 +46,23 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
 });
 
 Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHistory']], function(){
+    //Dashboard
     Route::get('dashboard',[UserController::class,'index'])->name('user.dashboard');
-    Route::get('dashboard',[UserController::class,'viewUserFiles'])->name('user.dashboard');
-    Route::get('profile',[UserController::class,'profile'])->name('user.profile');
-    Route::get('settings',[UserController::class,'settings'])->name('user.settings');
+    Route::post('/upload-file', [UserController::class, 'fileUpload'])->name('fileUpload');
+    Route::get('dashboard', [UserController::class, 'viewUserFiles'])->name('user.dashboard');
+    Route::get('dashboard/folder/{folderId}',[UserController::class, 'viewUserFiles']);
+    Route::get('/download/{filepath}', [UserController::class, 'downloadFile']);
+    Route::post('/create-folder', [UserController::class, 'createFolder'])->name('createFolder');
+    Route::get('/delete-file/{fileId}', [UserController::class, 'deleteFile']);
     
-    Route::post('upload-file', [UserController::class, 'fileUpload'])->name('fileUpload');
 
+    //Profile
+    Route::get('profile',[UserController::class,'profile'])->name('user.profile');
     Route::post('update-profile-info',[UserController::class,'updateInfo'])->name('userUpdateInfo');
     Route::post('change-profile-picture',[UserController::class,'updatePicture'])->name('userPictureUpdate');
     Route::post('change-password',[UserController::class,'changePassword'])->name('userChangePassword');
+
+    //Settings
+    Route::get('settings',[UserController::class,'settings'])->name('user.settings');
        
 });
