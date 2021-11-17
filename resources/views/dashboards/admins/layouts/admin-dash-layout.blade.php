@@ -90,14 +90,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.trash')}}" class="nav-link {{ (request()->is('admin/trash*')) ? 'active' : '' }}">
-              <i class="nav-icon fas fa-trash"></i>
-              <p>
-                Trash
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a href="{{ route('admin.profile')}}" class="nav-link {{ (request()->is('admin/profile*')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-user"></i>
               <p>

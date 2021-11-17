@@ -14,10 +14,6 @@ class AdminController extends Controller
         return view('dashboards.admins.index');           
     }
 
-    function trash(){
-        return view('dashboards.admins.trash');
-    }
-
     function profile(){
         return view('dashboards.admins.profile');
     }
@@ -127,6 +123,7 @@ class AdminController extends Controller
         ]);
 
         $fileModel = new File;
+        $folderId = $req->input('folder_id', null);
 
         if($req->file()) {
             $fileName = time().'_'.$req->file->getClientOriginalName();
@@ -134,6 +131,9 @@ class AdminController extends Controller
 
             $fileModel->name = time().'_'.$req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
+            $fileModel->user_id = Auth::user()->id;
+            $fileModel->folder_id = $folderId;
+
             $fileModel->save();
 
             return back()
@@ -142,10 +142,39 @@ class AdminController extends Controller
         }
    }
 
-    public function viewAdminFiles()
-    {
-    $files = DB::table('files') -> get();
-    return view('dashboards.admins.index', ['files' => $files]);
+    public function viewAdminFiles($folderId=null){
+        //$files = DB::table('files') -> get();
+        $user = User::where('id',Auth::user()->id)->with('files')->with('folders')->first();
+        if($folderId){
+            $files = $user->files->filter(function($value)use($folderId){
+                return $value->folder_id==$folderId;
+            });
+
+            $folders = [];
+        }
+        else{
+            $files = $user->files->filter(function($value){
+                return $value->folder_id==null;
+            });
+
+            $folders = $user->folders;
+        }
+        return view('dashboards.admins.index', ['files' => $files, 'folders' => $folders, 'folderId' => $folderId]);
     }
 
+    public function createFolder(Request $request) {
+        $folder = new Folder();
+        $folder->folder_name=$request->name;
+        $folder->user_id= Auth::user()->id;
+        $folder->save();
+
+        return back()
+        ->with('success','Folder has been created.');
+    }
+    
+    public function deleteFile($fileId) {
+        File::where('id', $fileId)->delete();
+
+        return back();
+    }
 }
