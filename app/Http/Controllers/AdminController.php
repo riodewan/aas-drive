@@ -14,6 +14,13 @@ class AdminController extends Controller
         return view('dashboards.admins.index');           
     }
 
+<<<<<<< HEAD
+=======
+    function devices(){
+        return view('dashboards.admins.devices');
+    }
+
+>>>>>>> de7f40d914e67fc36bf50d996d274d602517163c
     function profile(){
         return view('dashboards.admins.profile');
     }

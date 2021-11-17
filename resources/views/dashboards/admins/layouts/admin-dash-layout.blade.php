@@ -90,6 +90,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
+<<<<<<< HEAD
+=======
+            <a href="{{ route('admin.devices')}}" class="nav-link {{ (request()->is('admin/my-devices*')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-trash"></i>
+              <p>
+                My Devices
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+>>>>>>> de7f40d914e67fc36bf50d996d274d602517163c
             <a href="{{ route('admin.profile')}}" class="nav-link {{ (request()->is('admin/profile*')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-user"></i>
               <p>

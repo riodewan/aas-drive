@@ -12,8 +12,9 @@
                 <h1>All Files</h1>
             </div>
         </div>
-    </div><!-- /.container-fluid -->
+    </div>
     <hr>
+<<<<<<< HEAD
 
 <!-- TOMBOL CREATE & UPLOAD -->
 <div class="row">
@@ -72,11 +73,19 @@
 
 <!-- UPLOAD FILE --> 
     <div class="d-flex flex-wrap">
+=======
+    
+    <div class="d-flex flex-wrap">
+>>>>>>> de7f40d914e67fc36bf50d996d274d602517163c
         @foreach ($files as $file)
             <div class="p-2">
                 <div class="card" style="width: 9rem;">
                     <div class="card-body">
+<<<<<<< HEAD
                         <img src="img/file.jpeg" class="card-img-top" style="width: 100px; height: 80px;" alt="file gambar">
+=======
+                        <img src="img/file.jpeg" class="card-img-top" alt="file gambar">
+>>>>>>> de7f40d914e67fc36bf50d996d274d602517163c
                         <p class="card-text">{{ $file->name}}</p>
                         <div class="dropdown float-right">
                             <a class="dropdown-toggle" style="color: black" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
@@ -84,6 +93,7 @@
                                 <a class="dropdown-item" href="">
                                     <i class="fas fa-eye"></i> View
                                 </a>
+<<<<<<< HEAD
                                 <a class="dropdown-item" href="">
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
@@ -117,9 +127,12 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <input type="text" class="form-control" name="name" />
+=======
+                            </div>
+>>>>>>> de7f40d914e67fc36bf50d996d274d602517163c
                         </div>
-                        <input type="hidden" name="dir" value=""/>
                     </div>
+<<<<<<< HEAD
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary btn-sm">Submit</button>
@@ -152,9 +165,16 @@
                         <button type="submit" class="btn btn-primary btn-sm">Upload</button>
                     </div>
                 </form>
+=======
+                </div>
+>>>>>>> de7f40d914e67fc36bf50d996d274d602517163c
             </div>
-        </div>
+        @endforeach
     </div>
+<<<<<<< HEAD
 
     </section>
+=======
+    
+>>>>>>> de7f40d914e67fc36bf50d996d274d602517163c
 @endsection

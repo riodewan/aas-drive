@@ -36,10 +36,18 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
     Route::get('dashboard',[AdminController::class,'index'])->name('admin.dashboard');
     Route::post('/upload-file', [AdminController::class, 'fileUpload'])->name('fileUpload');
     Route::get('dashboard',[AdminController::class,'viewAdminFiles'])->name('admin.dashboard');
+<<<<<<< HEAD
     Route::get('dashboard/folder/{folderId}',[AdminController::class, 'viewAdminFiles']);
     Route::get('/download/{filepath}', [AdminController::class, 'downloadFile']);
     Route::post('/create-folder', [AdminController::class, 'createFolder'])->name('createFolder');
     Route::get('/delete-file/{fileId}', [AdminController::class, 'deleteFile']);
+=======
+    Route::get('my-devices',[AdminController::class,'devices'])->name('admin.devices');
+    Route::get('profile',[AdminController::class,'profile'])->name('admin.profile');
+    Route::get('settings',[AdminController::class,'settings'])->name('admin.settings');
+
+    Route::post('upload-file', [AdminController::class, 'fileUpload'])->name('fileUpload');
+>>>>>>> de7f40d914e67fc36bf50d996d274d602517163c
 
     //Profile
     Route::get('profile',[AdminController::class,'profile'])->name('admin.profile');
