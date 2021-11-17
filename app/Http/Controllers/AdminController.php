@@ -14,8 +14,8 @@ class AdminController extends Controller
         return view('dashboards.admins.index');           
     }
 
-    function trash(){
-        return view('dashboards.admins.trash');
+    function devices(){
+        return view('dashboards.admins.devices');
     }
 
     function profile(){
