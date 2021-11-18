@@ -39,7 +39,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
     Route::post('/admin-create-folder', [AdminController::class, 'adminCreateFolder'])->name('adminCreateFolder');
     Route::get('my-devices/folder/{folderId}',[AdminController::class, 'viewAdminFiles']);
     Route::post('/admin-upload-file', [AdminController::class, 'adminFileUpload'])->name('adminFileUpload');
-    Route::get('my-devices',[AdminController::class,'viewFilesAdmin'])->name('admin.devices');
+    Route::get('my-devices',[AdminController::class,'viewAdminFiles'])->name('admin.devices');
 
     //Profile
     Route::get('profile',[AdminController::class,'profile'])->name('admin.profile');
