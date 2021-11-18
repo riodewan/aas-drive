@@ -37,7 +37,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
 
     Route::get('my-devices',[AdminController::class,'devices'])->name('admin.devices');
     Route::post('/admin-create-folder', [AdminController::class, 'adminCreateFolder'])->name('adminCreateFolder');
-    Route::get('my-devices/folder/{folderId}',[AdminController::class, 'viewFilesAdmin']);
+    Route::get('my-devices/folder/{folderId}',[AdminController::class, 'viewAdminFiles']);
     Route::post('/admin-upload-file', [AdminController::class, 'adminFileUpload'])->name('adminFileUpload');
     Route::get('my-devices',[AdminController::class,'viewFilesAdmin'])->name('admin.devices');
 
@@ -47,12 +47,12 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
     Route::post('change-profile-picture',[AdminController::class,'updatePicture'])->name('adminPictureUpdate');
     Route::post('change-password',[AdminController::class,'changePassword'])->name('adminChangePassword');
     
-    //Setting
+    //Settings
     Route::get('settings',[AdminController::class,'settings'])->name('admin.settings');
-
 });
 
 Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHistory']], function(){
+    
     //Dashboard
     Route::get('dashboard',[UserController::class,'index'])->name('user.dashboard');
     Route::post('/upload-file', [UserController::class, 'fileUpload'])->name('fileUpload');
@@ -62,7 +62,6 @@ Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHisto
     Route::post('/create-folder', [UserController::class, 'createFolder'])->name('createFolder');
     Route::get('/delete-file/{fileId}', [UserController::class, 'deleteFile']);
     
-
     //Profile
     Route::get('profile',[UserController::class,'profile'])->name('user.profile');
     Route::post('update-profile-info',[UserController::class,'updateInfo'])->name('userUpdateInfo');

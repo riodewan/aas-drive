@@ -146,7 +146,7 @@ class AdminController extends Controller
     
         $fileModel = new File;
         $folderId = $req->input('folder_id', null);
-    
+
         if($req->file()) {
             $fileName = time().'_'.$req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
@@ -155,16 +155,16 @@ class AdminController extends Controller
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->user_id = Auth::user()->id;
             $fileModel->folder_id = $folderId;
-    
             $fileModel->save();
     
             return back()
             ->with('success','File has been uploaded.')
             ->with('file', $fileName);
         }
-   }
+    }
 
-    public function viewFilesAdmin($folderId=null){
+    public function viewAdminFiles($folderId=null){
+        //$files = DB::table('files') -> get();
         $user = User::where('id',Auth::user()->id)->with('files')->with('folders')->first();
         if($folderId){
             $files = $user->files->filter(function($value)use($folderId){
@@ -182,5 +182,10 @@ class AdminController extends Controller
         }
         return view('dashboards.admins.devices', ['files' => $files, 'folders' => $folders, 'folderId' => $folderId]);
     }
+    
+    public function deleteFile($fileId) {
+        File::where('id', $fileId)->delete();
 
+        return back();
+    }
 }
