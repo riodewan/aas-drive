@@ -84,14 +84,8 @@
                                 <a class="dropdown-item" href="">
                                     <i class="fas fa-eye"></i> View
                                 </a>
-                                <a class="dropdown-item" href="">
-                                    <i class="fas fa-edit"></i> Edit
-                                </a>
                                 <a class="dropdown-item" href="{{ url('user/delete-file/'.$file->id) }}">
                                     <i class="fas fa-trash"></i> Delete
-                                </a>
-                                <a class="dropdown-item" href="{{ url('user/download/'.$file->id) }}" target="_blank">
-                                    <i class="fas fa-download"></i> Download
                                 </a>
                                 <a class="dropdown-item" href="">
                                     <i class="fas fa-share"></i> Share
