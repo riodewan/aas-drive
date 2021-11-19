@@ -34,13 +34,13 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
     //Dashboard
     Route::get('dashboard',[AdminController::class,'index'])->name('admin.dashboard');
     Route::get('dashboard',[AdminController::class,'viewAllFiles'])->name('admin.dashboard');
-
+    
     Route::get('my-devices',[AdminController::class,'devices'])->name('admin.devices');
     Route::post('/admin-create-folder', [AdminController::class, 'adminCreateFolder'])->name('adminCreateFolder');
     Route::get('my-devices/folder/{folderId}',[AdminController::class, 'viewAdminFiles']);
     Route::post('/admin-upload-file', [AdminController::class, 'adminFileUpload'])->name('adminFileUpload');
     Route::get('my-devices',[AdminController::class,'viewAdminFiles'])->name('admin.devices');
-
+    
     //Profile
     Route::get('profile',[AdminController::class,'profile'])->name('admin.profile');
     Route::post('update-profile-info',[AdminController::class,'updateInfo'])->name('adminUpdateInfo');
