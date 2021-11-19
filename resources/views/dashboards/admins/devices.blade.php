@@ -46,6 +46,9 @@
             </ul>
         </div>
     @endif
+    
+<!-- FOLDER -->
+    
 
 <!-- MODAL CREATE FOLDER -->
     <div class="modal fade" id="newFolderModal" tabindex="-1" role="dialog" aria-labelledby="newFolderModalLabel">
@@ -55,7 +58,7 @@
                     <h4 class="modal-title" id="newFolderModalLabel">New Folder</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="" method="post" id="new-folder">
+                <form action="{{ route('adminCreateFolder') }}" method="post" id="new-folder">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -80,7 +83,7 @@
                     <h4 class="modal-title" id="uploadModalLabel">Upload File</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="{{ route('fileUpload') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('adminFileUpload') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                       <div class="input-group mb-3">

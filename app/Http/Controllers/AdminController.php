@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
 use App\Models\User;
 use App\Models\File;
+use App\Models\Folder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -28,7 +31,7 @@ class AdminController extends Controller
 
     function updateInfo(Request $request){
         
-            $validator = \Validator::make($request->all(),[
+            $validator = Validator::make($request->all(),[
                 'name'=>'required',
                 'email'=> 'required|email|unique:users,email,'.Auth::user()->id,
                 'favoritecolor'=>'required',
@@ -84,10 +87,10 @@ class AdminController extends Controller
 
     function changePassword(Request $request){
         //Validate form
-        $validator = \Validator::make($request->all(),[
+        $validator = Validator::make($request->all(),[
             'oldpassword'=>[
                 'required', function($attribute, $value, $fail){
-                    if( !\Hash::check($value, Auth::user()->password) ){
+                    if( !Hash::check($value, Auth::user()->password) ){
                         return $fail(__('The current password is incorrect'));
                     }
                 },
@@ -111,7 +114,7 @@ class AdminController extends Controller
                 return response()->json(['status'=>0,'error'=>$validator->errors()->toArray()]);
             }else{
                 
-            $update = User::find(Auth::user()->id)->update(['password'=>\Hash::make($request->newpassword)]);
+            $update = User::find(Auth::user()->id)->update(['password'=>Hash::make($request->newpassword)]);
 
             if( !$update ){
                 return response()->json(['status'=>0,'msg'=>'Something went wrong, Failed to update password in db']);
@@ -121,30 +124,44 @@ class AdminController extends Controller
         }
     }
 
-    public function fileUpload(Request $req){
-        $req->validate([
-        'file' => 'required|mimes:csv,txt,xlx,xls,pdf,docx,jpg,jpeg,png|max:2048'
-        ]);
+    public function viewAllFiles(){
+        $files = DB::table('files') -> get();
+        return view('dashboards.admins.index', ['files' => $files]);
+    }
 
+    public function adminCreateFolder(Request $request) {
+        $folder = new Folder();
+        $folder->folder_name=$request->name;
+        $folder->user_id= Auth::user()->id;
+        $folder->save();
+
+        return back()
+        ->with('success','Folder has been created.');
+    }
+    
+    public function adminFileUpload(Request $req){
+        $req->validate([
+        'file' => 'required|mimes:jpg,jpeg,png,mp4,csv,txt,xlx,xlsx,xls,pdf,docx,pptx|max:10000'
+        ]);
+    
         $fileModel = new File;
         $folderId = $req->input('folder_id', null);
 
         if($req->file()) {
             $fileName = time().'_'.$req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
-
+    
             $fileModel->name = time().'_'.$req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->user_id = Auth::user()->id;
             $fileModel->folder_id = $folderId;
-
             $fileModel->save();
-
+    
             return back()
             ->with('success','File has been uploaded.')
             ->with('file', $fileName);
         }
-   }
+    }
 
     public function viewAdminFiles($folderId=null){
         //$files = DB::table('files') -> get();
@@ -163,17 +180,7 @@ class AdminController extends Controller
 
             $folders = $user->folders;
         }
-        return view('dashboards.admins.index', ['files' => $files, 'folders' => $folders, 'folderId' => $folderId]);
-    }
-
-    public function createFolder(Request $request) {
-        $folder = new Folder();
-        $folder->folder_name=$request->name;
-        $folder->user_id= Auth::user()->id;
-        $folder->save();
-
-        return back()
-        ->with('success','Folder has been created.');
+        return view('dashboards.admins.devices', ['files' => $files, 'folders' => $folders, 'folderId' => $folderId]);
     }
     
     public function deleteFile($fileId) {
