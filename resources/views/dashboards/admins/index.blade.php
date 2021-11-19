@@ -14,6 +14,20 @@
         </div>
     </div>
     <hr>
+
+    <!-- FOLDER -->
+    <div class="d-flex flex-wrap">
+        @foreach ($folders as $folder)
+            <div class="p-2">
+                <a href="{{ url('admin/dashboard/folder/'.$folder->id )}}" class="card" style="width: 9rem;">
+                    <div class="card-body">
+                        <img src="img/folder.jpg" class="card-img-top" style="width: 100px; height: 80px;" alt="file gambar">
+                        <p class="card-text" style="color: rgb(49, 49, 49)">{{ $folder->folder_name }}</p>
+                    </div>
+                </a>
+            </div>
+        @endforeach
+    </div>
     
     <div class="d-flex flex-wrap">
         @foreach ($files as $file)
@@ -27,6 +41,9 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="">
                                     <i class="fas fa-eye"></i> View
+                                </a>
+                                <a class="dropdown-item">
+                                    <i class="fas fa-key"></i> User id: {{ $file->user_id}}
                                 </a>
                             </div>
                         </div>

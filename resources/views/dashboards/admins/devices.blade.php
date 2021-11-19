@@ -19,9 +19,16 @@
             <div class="box box-primary"> 
                 <div class="box-body no-padding">
                     <div class="mailbox-controls with-border">
+                        @if(!$folderId)
                         <a class="btn btn-default btn" data-toggle="modal" data-target="#newFolderModal" title="New Folder">
                             <i class="fa fa-folder"></i>
                         </a>  
+                        @endif
+                        @if($folderId)
+                        <a href="{{ url('admin/my-devices/') }}" class="btn btn-default btn" title="Back">
+                            <i class="fa fa-home"></i>
+                        </a>
+                        @endif
                         <a class="btn btn-default btn" data-toggle="modal" data-target="#uploadModal" title="Upload File">
                             <i class="fa fa-upload"></i>
                         </a>
@@ -48,7 +55,46 @@
     @endif
     
 <!-- FOLDER -->
-    
+    <div class="d-flex flex-wrap">
+        @foreach ($folders as $folder)
+            <div class="p-2">
+                <a href="{{ url('admin/my-devices/folder/'.$folder->id )}}" class="card" style="width: 9rem;">
+                    <div  class="card-body">
+                        <img src="img/folder.jpg" class="card-img-top" style="width: 100px; height: 80px;" alt="file gambar">
+                        <p class="card-text text-center" style="color: rgb(49, 49, 49)">{{ $folder->folder_name }}</p>
+                    </div>
+                </a>
+            </div>
+        @endforeach
+    </div>
+
+<!-- FILE --> 
+    <div class="d-flex flex-wrap">
+        @foreach ($files as $file)
+            <div class="p-2">
+                <div class="card" style="width: 9rem;">
+                    <div class="card-body">
+                        <img src="img/file.jpeg" class="card-img-top" style="width: 100px; height: 80px;" alt="file gambar">
+                        <p class="card-text">{{ $file->name}}</p>
+                        <div class="dropdown float-right">
+                            <a class="dropdown-toggle" style="color: black" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="">
+                                    <i class="fas fa-eye"></i> View
+                                </a>
+                                <a class="dropdown-item" href="{{ url('admin/delete-admin-file/'.$file->id) }}">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+                                <a class="dropdown-item" href="">
+                                    <i class="fas fa-share"></i> Share
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
 
 <!-- MODAL CREATE FOLDER -->
     <div class="modal fade" id="newFolderModal" tabindex="-1" role="dialog" aria-labelledby="newFolderModalLabel">

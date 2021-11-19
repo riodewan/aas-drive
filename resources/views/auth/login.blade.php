@@ -27,11 +27,7 @@
 								</div>
 
 								<div class="form-group">
-									<label for="password">Password
-										<a href="{{route('password.request')}}" class="float-right">
-											Forgot Password?
-										</a>
-									</label>
+									<label for="password">Password</label>
 									<input id="password" type="password" class="form-control" name="password" required data-eye placeholder="Enter password">
                                     <span class="text-danger">@error('password'){{ $message }}@enderror</span>
 								</div>

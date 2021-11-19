@@ -126,7 +126,9 @@ class AdminController extends Controller
 
     public function viewAllFiles(){
         $files = DB::table('files') -> get();
-        return view('dashboards.admins.index', ['files' => $files]);
+        $folders = DB::table('folders') -> get();
+        
+        return view('dashboards.admins.index', ['files' => $files],['folders' => $folders]);
     }
 
     public function adminCreateFolder(Request $request) {
@@ -183,7 +185,7 @@ class AdminController extends Controller
         return view('dashboards.admins.devices', ['files' => $files, 'folders' => $folders, 'folderId' => $folderId]);
     }
     
-    public function deleteFile($fileId) {
+    public function deleteAdminFile($fileId) {
         File::where('id', $fileId)->delete();
 
         return back();

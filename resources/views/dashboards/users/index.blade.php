@@ -63,14 +63,14 @@
                 <a href="{{ url('user/dashboard/folder/'.$folder->id )}}" class="card" style="width: 9rem;">
                     <div class="card-body">
                         <img src="img/folder.jpg" class="card-img-top" style="width: 100px; height: 80px;" alt="file gambar">
-                        <p class="card-text">{{ $folder->folder_name }}</p>
+                        <p class="card-text text-center" style="color: rgb(49, 49, 49)">{{ $folder->folder_name }}</p>
                     </div>
                 </a>
             </div>
         @endforeach
     </div>
 
-<!-- UPLOAD FILE --> 
+<!-- FILE --> 
     <div class="d-flex flex-wrap">
         @foreach ($files as $file)
             <div class="p-2">
