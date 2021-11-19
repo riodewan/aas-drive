@@ -34,13 +34,15 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
     //Dashboard
     Route::get('dashboard',[AdminController::class,'index'])->name('admin.dashboard');
     Route::get('dashboard',[AdminController::class,'viewAllFiles'])->name('admin.dashboard');
-    
+    Route::get('dashboard/folder/{folderId}',[AdminController::class, 'viewAllFiles']);
+
     Route::get('my-devices',[AdminController::class,'devices'])->name('admin.devices');
     Route::post('/admin-create-folder', [AdminController::class, 'adminCreateFolder'])->name('adminCreateFolder');
     Route::get('my-devices/folder/{folderId}',[AdminController::class, 'viewAdminFiles']);
     Route::post('/admin-upload-file', [AdminController::class, 'adminFileUpload'])->name('adminFileUpload');
     Route::get('my-devices',[AdminController::class,'viewAdminFiles'])->name('admin.devices');
-    
+    Route::get('/delete-admin-file/{fileId}', [AdminController::class, 'deleteAdminFile']);
+
     //Profile
     Route::get('profile',[AdminController::class,'profile'])->name('admin.profile');
     Route::post('update-profile-info',[AdminController::class,'updateInfo'])->name('adminUpdateInfo');
@@ -48,7 +50,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
     Route::post('change-password',[AdminController::class,'changePassword'])->name('adminChangePassword');
     
     //Settings
-    Route::get('settings',[AdminController::class,'settings'])->name('admin.settings');
+    Route::get('user-list',[AdminController::class,'userList'])->name('admin.userList');
 });
 
 Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHistory']], function(){
