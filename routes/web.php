@@ -50,7 +50,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
     Route::post('change-password',[AdminController::class,'changePassword'])->name('adminChangePassword');
     
     //Settings
-    Route::get('settings',[AdminController::class,'settings'])->name('admin.settings');
+    Route::get('user-list',[AdminController::class,'userList'])->name('admin.userList');
 });
 
 Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHistory']], function(){

@@ -106,10 +106,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.settings')}}" class="nav-link {{ (request()->is('admin/settings*')) ? 'active' : '' }}">
-              <i class="nav-icon fas fa-cog"></i>
+            <a href="{{ route('admin.userList')}}" class="nav-link {{ (request()->is('admin/user-list*')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-list"></i>
               <p>
-               Settings
+               User List
               </p>
             </a>
           </li>
