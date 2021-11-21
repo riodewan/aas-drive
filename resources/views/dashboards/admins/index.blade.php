@@ -15,7 +15,24 @@
     </div>
     <hr>
 
-    <!-- FOLDER -->
+<!-- BACK -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary"> 
+                <div class="box-body no-padding">
+                    <div class="mailbox-controls with-border">
+                        @if($folderId)
+                        <a href="{{ url('admin/dashboard/') }}" class="btn btn-default btn" title="Back">
+                            <i class="fa fa-home"></i>
+                        </a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- FOLDER -->
     <div class="d-flex flex-wrap">
         @foreach ($folders as $folder)
             <div class="p-2">
@@ -29,6 +46,7 @@
         @endforeach
     </div>
     
+<!-- FILE -->
     <div class="d-flex flex-wrap">
         @foreach ($files as $file)
             <div class="p-2">

@@ -131,6 +131,9 @@
                 </div>
                 <form action="{{ route('adminFileUpload') }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    @if($folderId)
+                        <input type="hidden" name="folder_id" value="{{$folderId}}" />
+                    @endif
                     <div class="modal-body">
                       <div class="input-group mb-3">
                             <input type="file" name="file" class="form-control">

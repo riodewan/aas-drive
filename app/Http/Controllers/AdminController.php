@@ -125,11 +125,18 @@ class AdminController extends Controller
         }
     }
 
-    public function viewAllFiles(){
-        $files = DB::table('files') -> get();
-        $folders = DB::table('folders') -> get();
+    public function viewAllFiles($folderId=null){
+
+        if($folderId){
+            $files = DB::table('files') -> where('folder_id', $folderId)-> get();
+            $folders = [];
+        }
+        else{
+            $files = DB::table('files') -> where('folder_id', null) -> get();
+            $folders = DB::table('folders') -> get();
+        }
         
-        return view('dashboards.admins.index', ['files' => $files],['folders' => $folders]);
+        return view('dashboards.admins.index', ['files' => $files, 'folders' => $folders, 'folderId' => $folderId]);
     }
 
     public function adminCreateFolder(Request $request) {
