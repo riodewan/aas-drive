@@ -49,7 +49,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
     Route::post('change-profile-picture',[AdminController::class,'updatePicture'])->name('adminPictureUpdate');
     Route::post('change-password',[AdminController::class,'changePassword'])->name('adminChangePassword');
     
-    //Settings
+    //List User
     Route::get('user-list',[AdminController::class,'userList'])->name('admin.userList');
 });
 
@@ -69,8 +69,5 @@ Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHisto
     Route::post('update-profile-info',[UserController::class,'updateInfo'])->name('userUpdateInfo');
     Route::post('change-profile-picture',[UserController::class,'updatePicture'])->name('userPictureUpdate');
     Route::post('change-password',[UserController::class,'changePassword'])->name('userChangePassword');
-
-    //Settings
-    Route::get('settings',[UserController::class,'settings'])->name('user.settings');
        
 });

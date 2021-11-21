@@ -196,6 +196,7 @@ class AdminController extends Controller
     public function deleteAdminFile($fileId) {
         File::where('id', $fileId)->delete();
 
-        return back();
+        return back()
+        ->with('success','File Deleted Successfully');
     }
 }
