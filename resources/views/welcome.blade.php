@@ -8,13 +8,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
-
     <style>
         * {
             font-family: 'Montserrat', sans-serif;
         }
         .banner-image {
-            background-image: url('dist/img/welcome.jpg');
+            background-image: url('dist/img/welcome2.jpg');
             background-size: cover;
         }
     </style>
@@ -41,7 +40,6 @@
           <div class="mx-auto"></div>
           <ul class="navbar-nav">
           @if (Route::has('login'))
-                <!-- <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block"> -->
                     @auth
                         {{-- 
                         <li class="nav-item">
@@ -51,23 +49,23 @@
 
                         @if ( Auth::user()->role == 1)
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('admin.dashboard') }}">Home</a>
+                                <a class="nav-link text-white btn" href="{{ route('admin.dashboard') }}">Home</a>
                             </li>                 
                         @endif
 
                         @if ( Auth::user()->role == 2)
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('user.dashboard') }}">Home</a>
+                                <a class="nav-link text-white btn" href="{{ route('user.dashboard') }}">Home</a>
                             </li>                      
                         @endif
 
                     @else
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route('login') }}">Login</a>
+                            <a class="nav-link text-white btn" href="{{ route('login') }}">Login</a>
                         </li>              
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route('register') }}">Register</a>
+                            <a class="nav-link text-white btn btn-primary" href="{{ route('register') }}">Register</a>
                         </li> 
                         @endif
                     @endauth
@@ -82,9 +80,9 @@
     <div
       class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center"
     >
-      <div class="content text-center bg-gradient">
-        <h1 class="text-dark">AAS Drive</h1>
-        <p class="text-dark"><strong>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima, in!</strong></p>
+      <div class="content text-center bg-gradient opacity-2 shadow">
+        <h1 class="text-white">Welcome to AAS Drive</h1>
+        <p class="text-white"><strong>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima, in!</strong></p>
       </div>
     </div>
 
