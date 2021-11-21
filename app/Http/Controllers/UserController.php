@@ -20,10 +20,6 @@ class UserController extends Controller
        return view('dashboards.users.profile');
     }
 
-    function settings(){
-       return view('dashboards.users.settings');
-    }
-
     function updateInfo(Request $request){
         
         $validator = Validator::make($request->all(),[
@@ -177,6 +173,7 @@ class UserController extends Controller
     public function deleteFile($fileId) {
         File::where('id', $fileId)->delete();
 
-        return back();
+        return back()
+        ->with('success','File Deleted Successfully');
     }
 }
