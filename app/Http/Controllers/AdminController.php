@@ -192,6 +192,12 @@ class AdminController extends Controller
         }
         return view('dashboards.admins.devices', ['files' => $files, 'folders' => $folders, 'folderId' => $folderId]);
     }
+
+    public function showAdminFile($fileId){
+        $file = File::find($fileId);
+
+        return view('dashboards.admins.show', compact('file'));
+    }
     
     public function deleteAdminFile($fileId) {
         File::where('id', $fileId)->delete();

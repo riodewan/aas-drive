@@ -43,6 +43,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
     Route::get('my-devices',[AdminController::class,'viewAdminFiles'])->name('admin.devices');
     Route::get('/delete-admin-file/{fileId}', [AdminController::class, 'deleteAdminFile']);
 
+    Route::get('show/show-admin-file/{fileId}', [AdminController::class, 'showAdminFile']);
+
     //Profile
     Route::get('profile',[AdminController::class,'profile'])->name('admin.profile');
     Route::post('update-profile-info',[AdminController::class,'updateInfo'])->name('adminUpdateInfo');
