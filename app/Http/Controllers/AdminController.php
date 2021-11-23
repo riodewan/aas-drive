@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -195,7 +196,7 @@ class AdminController extends Controller
 
     public function showAdminFile($fileId){
         $file = File::find($fileId);
-
+        
         return view('dashboards.admins.show', compact('file'));
     }
     
