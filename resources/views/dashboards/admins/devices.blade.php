@@ -79,7 +79,7 @@
                         <div class="dropdown float-right">
                             <a class="dropdown-toggle" style="color: black" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="{{ url('admin/show/show-admin-file/'.$file->id) }}">
+                                <a class="dropdown-item" href="{{ url('admin/view/view-admin-file/'.$file->id) }}">
                                     <i class="fas fa-eye"></i> View
                                 </a>
                                 <a class="dropdown-item" href="{{ url('admin/delete-admin-file/'.$file->id) }}">
@@ -135,7 +135,10 @@
                         <input type="hidden" name="folder_id" value="{{$folderId}}" />
                     @endif
                     <div class="modal-body">
-                      <div class="input-group mb-3">
+                        <div class="alert alert-warning" role="alert">
+                            File harus berupa jpg, jpeg, png, mp4, pdf
+                        </div>
+                        <div class="input-group mb-3">
                             <input type="file" name="file" class="form-control">
                         </div>
                     </div>

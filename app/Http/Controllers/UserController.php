@@ -117,7 +117,7 @@ class UserController extends Controller
 
     public function fileUpload(Request $req){
         $req->validate([
-        'file' => 'required|mimes:jpg,jpeg,png,mp4,csv,txt,xlx,xlsx,xls,pdf,docx,pptx|max:10000'
+        'file' => 'required|mimes:jpg,jpeg,png,mp4,pdf|max:10000'
         ]);
 
         $fileModel = new File;
@@ -140,7 +140,7 @@ class UserController extends Controller
         }
     }
 
-    public function viewUserFiles($folderId=null){
+    public function showUserFiles($folderId=null){
         //$files = DB::table('files') -> get();
         $user = User::where('id',Auth::user()->id)->with('files')->with('folders')->first();
         if($folderId){
@@ -168,6 +168,12 @@ class UserController extends Controller
 
         return back()
         ->with('success','Folder has been created.');
+    }
+
+    public function viewFile($fileId){
+        $file = File::find($fileId);
+        
+        return view('dashboards.users.view', compact('file'));
     }
 
     public function deleteFile($fileId) {

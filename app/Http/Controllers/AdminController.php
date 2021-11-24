@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -126,7 +125,7 @@ class AdminController extends Controller
         }
     }
 
-    public function viewAllFiles($folderId=null){
+    public function showAllFiles($folderId=null){
 
         if($folderId){
             $files = DB::table('files') -> where('folder_id', $folderId)-> get();
@@ -152,7 +151,7 @@ class AdminController extends Controller
     
     public function adminFileUpload(Request $req){
         $req->validate([
-        'file' => 'required|mimes:jpg,jpeg,png,mp4,csv,txt,xlx,xlsx,xls,pdf,docx,pptx|max:10000'
+        'file' => 'required|mimes:jpg,jpeg,png,mp4,pdf|max:100000'
         ]);
     
         $fileModel = new File;
@@ -174,7 +173,7 @@ class AdminController extends Controller
         }
     }
 
-    public function viewAdminFiles($folderId=null){
+    public function showAdminFiles($folderId=null){
         //$files = DB::table('files') -> get();
         $user = User::where('id',Auth::user()->id)->with('files')->with('folders')->first();
         if($folderId){
@@ -194,10 +193,16 @@ class AdminController extends Controller
         return view('dashboards.admins.devices', ['files' => $files, 'folders' => $folders, 'folderId' => $folderId]);
     }
 
-    public function showAdminFile($fileId){
+    public function viewAdminFile($fileId){
         $file = File::find($fileId);
         
-        return view('dashboards.admins.show', compact('file'));
+        return view('dashboards.admins.viewFileAdmin', compact('file'));
+    }
+
+    public function viewDashboardFile($fileId){
+        $file = File::find($fileId);
+        
+        return view('dashboards.admins.viewFileDash', compact('file'));
     }
     
     public function deleteAdminFile($fileId) {

@@ -57,7 +57,7 @@
                         <div class="dropdown float-right">
                             <a class="dropdown-toggle" style="color: black" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="{{ url('admin/view/view-dashboard-file/'.$file->id) }}">
                                     <i class="fas fa-eye"></i> View
                                 </a>
                                 <a class="dropdown-item">

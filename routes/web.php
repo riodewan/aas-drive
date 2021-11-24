@@ -33,17 +33,18 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHistory']], function(){
     //Dashboard
     Route::get('dashboard',[AdminController::class,'index'])->name('admin.dashboard');
-    Route::get('dashboard',[AdminController::class,'viewAllFiles'])->name('admin.dashboard');
-    Route::get('dashboard/folder/{folderId}',[AdminController::class, 'viewAllFiles']);
+    Route::get('dashboard',[AdminController::class,'showAllFiles'])->name('admin.dashboard');
+    Route::get('dashboard/folder/{folderId}',[AdminController::class, 'showAllFiles']);
 
     Route::get('my-devices',[AdminController::class,'devices'])->name('admin.devices');
     Route::post('/admin-create-folder', [AdminController::class, 'adminCreateFolder'])->name('adminCreateFolder');
-    Route::get('my-devices/folder/{folderId}',[AdminController::class, 'viewAdminFiles']);
+    Route::get('my-devices/folder/{folderId}',[AdminController::class, 'showAdminFiles']);
     Route::post('/admin-upload-file', [AdminController::class, 'adminFileUpload'])->name('adminFileUpload');
-    Route::get('my-devices',[AdminController::class,'viewAdminFiles'])->name('admin.devices');
+    Route::get('my-devices',[AdminController::class,'showAdminFiles'])->name('admin.devices');
     Route::get('/delete-admin-file/{fileId}', [AdminController::class, 'deleteAdminFile']);
 
-    Route::get('show/show-admin-file/{fileId}', [AdminController::class, 'showAdminFile']);
+    Route::get('view/view-admin-file/{fileId}', [AdminController::class, 'viewAdminFile']);
+    Route::get('view/view-dashboard-file/{fileId}', [AdminController::class, 'viewDashboardFile']);
 
     //Profile
     Route::get('profile',[AdminController::class,'profile'])->name('admin.profile');
@@ -60,11 +61,14 @@ Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHisto
     //Dashboard
     Route::get('dashboard',[UserController::class,'index'])->name('user.dashboard');
     Route::post('/upload-file', [UserController::class, 'fileUpload'])->name('fileUpload');
-    Route::get('dashboard', [UserController::class, 'viewUserFiles'])->name('user.dashboard');
-    Route::get('dashboard/folder/{folderId}',[UserController::class, 'viewUserFiles']);
+    Route::get('dashboard', [UserController::class, 'showUserFiles'])->name('user.dashboard');
+    Route::get('dashboard/folder/{folderId}',[UserController::class, 'showUserFiles']);
     Route::get('/download/{filepath}', [UserController::class, 'downloadFile']);
     Route::post('/create-folder', [UserController::class, 'createFolder'])->name('createFolder');
     Route::get('/delete-file/{fileId}', [UserController::class, 'deleteFile']);
+
+    Route::get('view/view-file/{fileId}', [UserController::class, 'viewFile']);
+
     
     //Profile
     Route::get('profile',[UserController::class,'profile'])->name('user.profile');

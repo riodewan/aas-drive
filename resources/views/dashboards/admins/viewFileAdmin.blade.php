@@ -1,5 +1,5 @@
 @extends('dashboards.admins.layouts.admin-dash-layout')
-@section('title','Show File')
+@section('title','View File')
 
 @section('content')
     <div class="row">
@@ -19,7 +19,7 @@
     <div class="container">
         <h5 class="mt-3">{{$file->name}}</h5>   
         <p>
-            <iframe src="{{ url('storage/uploads/'.$file->file)}}" style=" width: 1000px; height: 500px;"></iframe>
+            <iframe src="{{asset($file->file_path)}}" style=" width: 1000px; height: 500px;"></iframe>
         </p>
     </div>
     
