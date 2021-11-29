@@ -18,15 +18,9 @@
     
     <div class="container">
         <h5 class="mt-3">{{$file->name}}</h5>
-        @if($extension == '.png' || $extension == '.jpg' || $extension == '.jpeg')
-            <img src="{{asset($file->file_path)}}"/>
-        @elseif($extension == '.pdf')
-            <embed src="{{asset($file->file_path)}}" type="application/pdf" frameborder="0" scrolling="auto" height="100%" width="100%"/>
-        @elseif($extension == '.docx' || $extension == '.xlsx' || $extension == '.xlx')
-            <iframe src="https://view.officeapps.live.com/op/view.aspx?src={{asset($file->file_path)}}" style=" width: 1000px; height: 500px;"></iframe>
-        @elseif($extension == '.zip')
+        <p>
             <iframe src="{{asset($file->file_path)}}" style=" width: 1000px; height: 500px;"></iframe>
-        @endif
+        </p> 
     </div>
     
 @endsection

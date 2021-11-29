@@ -151,7 +151,7 @@ class AdminController extends Controller
     
     public function adminFileUpload(Request $req){
         $req->validate([
-        'file' => 'required|mimes:jpg,jpeg,png,mp4,pdf,docx,xlsx,xlx,zip|max:100000'
+        'file' => 'required|mimes:jpg,jpeg,png,gif,mp4,mp3,pdf,docx,xlsx,xlx,zip,rar|max:100000'
         ]);
     
         $fileModel = new File;
@@ -196,8 +196,6 @@ class AdminController extends Controller
     public function viewAdminFile($fileId){
         $file = File::find($fileId);
 
-        $extension = $file->getClientOriginalExtension();
-        
         return view('dashboards.admins.viewFileAdmin', compact('file'));
     }
 

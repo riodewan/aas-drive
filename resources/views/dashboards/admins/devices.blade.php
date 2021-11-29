@@ -135,9 +135,6 @@
                         <input type="hidden" name="folder_id" value="{{$folderId}}" />
                     @endif
                     <div class="modal-body">
-                        <div class="alert alert-warning" role="alert">
-                            File harus berupa jpg, jpeg, png, mp4, pdf
-                        </div>
                         <div class="input-group mb-3">
                             <input type="file" name="file" class="form-control">
                         </div>
