@@ -85,9 +85,6 @@
                                 <a class="dropdown-item" href="{{ url('admin/delete-admin-file/'.$file->id) }}">
                                     <i class="fas fa-trash"></i> Delete
                                 </a>
-                                <a class="dropdown-item" href="">
-                                    <i class="fas fa-share"></i> Share
-                                </a>
                             </div>
                         </div>
                     </div>

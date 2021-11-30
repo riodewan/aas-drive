@@ -19,7 +19,7 @@
     <div class="container">
         <h5 class="mt-3">{{$file->name}}</h5>   
         <p>
-            <iframe src="{{asset($file->file_path)}}" style=" width: 1000px; height: 500px;"></iframe>
+            <iframe src="{{asset($file->file_path)}}" frameborder="0" style=" width: 1000px; height: 500px;"></iframe>
         </p>
     </div>
     
