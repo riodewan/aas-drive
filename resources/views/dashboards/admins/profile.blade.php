@@ -88,7 +88,7 @@
                     <div class="tab-pane" id="change_password">
                         <form class="form-horizontal" action="{{ route('adminChangePassword') }}" method="POST" id="changePasswordAdminForm">
                           <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Old Passord</label>
+                            <label for="inputName" class="col-sm-2 col-form-label">Old Password</label>
                             <div class="col-sm-10">
                               <input type="password" class="form-control" id="inputName" placeholder="Enter current password" name="oldpassword">
                               <span class="text-danger error-text oldpassword_error"></span>
